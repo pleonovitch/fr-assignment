@@ -1,0 +1,12 @@
+---
+steps:
+- name: 'gcr.io/$PROJECT_ID/pytest'
+  id: 'run unit tests'
+  args: ['pytest']
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'build image'
+  args: ['build',
+         '-t', 'gcr.io/$PROJECT_ID/wordcrunch', '.']
+images:
+- 'gcr.io/$PROJECT_ID/wordcrunch'
