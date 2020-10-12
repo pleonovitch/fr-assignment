@@ -28,7 +28,7 @@ deploy_app: app_image tf
 		$(eval EXPECTED_TEST_TL:= $(shell cat test_data/expected_TOTAL_LEN))
 		echo $(EXPECTED_TEST_TL)
 		#obtain runtime value of TOTAL_LEN element of response payload
-		$(eval TEST_TL := $(shell curl -s -F file=@test_data/test.txt  $(SERVICE_IP)/process1 | jq ".response.TOTAL_LEN"))
+		$(eval TEST_TL := $(shell curl -s -F file=@test_data/test.txt  $(SERVICE_IP)/process | jq ".response.TOTAL_LEN"))
 		echo $(TEST_TL)
 		#compare expected versus runtime
 		deployment/fail_if_not_equal.sh $(EXPECTED_TEST_TL) $(TEST_TL)
