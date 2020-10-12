@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordcrunch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordcrunch
+  template:
+    metadata:
+      labels:
+        app: wordcrunch
+    spec:
+      containers:
+      - name: wordcrunch
+        image: gcr.io/{{ PROJECT_ID }}/wordcrunch:latest
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PORT
+            value: "8080"
